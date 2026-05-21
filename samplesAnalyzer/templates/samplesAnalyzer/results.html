@@ -1,0 +1,22 @@
+{% extends "samplesAnalyzer/LabinatorDesign.html" %}
+{% block content %}
+
+<h1>{{ sample.sample_name }}</h1>
+<p>THE STATUS OF THE SAMPLE SELECTED IS: <strong>{{ result }}</strong></p>
+<form method="get" action="{% url 'samplesAnalyzer:index' %}">
+    <button>TEST ANOTHER SAMPLE?</button>
+</form>
+<br>
+<form method="get" action="{% url 'samplesAnalyzer:detail' sample.sample_name %}">
+    <button>EDIT SAMPLE?</button>
+</form>
+<br>
+<form method="get" action="{% url 'samplesAnalyzer:finalResults' %}">
+    <button type="submit">SEE ALL RESULTS</button>
+</form>
+<br>
+<form method="get" action="{% url 'samplesAnalyzer:index' %}">
+    <button type="submit">GO BACK TO INDEX</button>
+</form>
+
+{% endblock %}

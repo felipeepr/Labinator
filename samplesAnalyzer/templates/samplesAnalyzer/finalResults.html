@@ -1,0 +1,29 @@
+{% extends "samplesAnalyzer/LabinatorDesign.html" %}
+{% block content %}
+
+{% if results %}
+    <table>
+        <tr>
+            <th>SAMPLE</th>
+            <th>PATIENT</th>
+            <th>RESULT</th>
+            <th>DATE</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.result_sample }}</td>
+            <td>{{ result.samples.sample_pacient_name }}</td>
+            <td>{{ result.result_result }}</td>
+            <td>{{ result.result_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form method="get" action="{% url 'samplesAnalyzer:index' %}">
+        <button type="submit">GO BACK TO INDEX</button>
+    </form>
+{% else %}
+    <p>No results yet.</p>
+{% endif %}
+
+{% endblock %}

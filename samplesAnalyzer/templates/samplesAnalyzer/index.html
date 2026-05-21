@@ -1,0 +1,40 @@
+{% extends "samplesAnalyzer/LabinatorDesign.html" %}
+{% block content %}
+
+{% if latest_sample_list %}
+    <form method="post" action="{% url 'samplesAnalyzer:samples_create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="sample_name">
+        <input type="datetime-local" name="sample_date">
+        <input type="text" name="sample_pacient_name" value="">
+        <input type="file" name="sample_image">
+        <button type="submit">CREATE</button>
+    </form>
+
+    <ul>
+    {% for samples in latest_sample_list %}
+    {% if samples.sample_image %}
+    <img src="{{ samples.sample_image.url }}" width="300">
+    {% endif %}
+    <br>
+        <li>
+            <a href="{% url 'samplesAnalyzer:detail' samples.sample_name %}">{{ samples.sample_name }}</a>
+            <form method="post" action="{% url 'samplesAnalyzer:samples_edit' samples.id %}">
+                {% csrf_token %}
+                <input type="text" name="sample_name" value="{{ samples.sample_name }}">
+                <input type="text" name="sample_pacient_name" value="{{ samples.sample_pacient_name }}">
+                <input type="datetime-local" name="sample_date" value="{{ samples.sample_date }}">
+                <button type="submit">EDIT</button>
+            </form>
+            <form method="post" action="{% url 'samplesAnalyzer:samples_delete' samples.id %}">
+                {% csrf_token %}
+                <button type="submit">DELETE</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Samples are available.</p>
+{% endif %}
+
+{% endblock %}

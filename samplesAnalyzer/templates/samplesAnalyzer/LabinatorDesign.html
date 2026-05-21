@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LABINATOR</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+        }
+        h1 {
+            color: red;
+        }
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        input {
+            background-color: #222;
+            color: white;
+            border: 1px solid red;
+            padding: 4px;
+        }
+        a {
+            color: red;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid red;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>LABINATOR</h1>
+    <hr color="red">
+    {% block content %}{% endblock %}
+</body>
+</html>

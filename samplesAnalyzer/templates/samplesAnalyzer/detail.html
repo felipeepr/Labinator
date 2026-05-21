@@ -1,0 +1,23 @@
+{% extends "samplesAnalyzer/LabinatorDesign.html" %}
+{% block content %}
+
+<form method="post" action="{% url 'samplesAnalyzer:tested' sample.id %}">
+    {% csrf_token %}
+    <input type="radio" name="result" value="POSITIVE"> POSITIVE
+    <br>
+    <input type="radio" name="result" value="NEGATIVE"> NEGATIVE
+    <br>
+    <input type="radio" name="result" value="MUST REPEAT"> MUST REPEAT
+    <br>
+    <button type="submit">SEND</button>
+</form>
+<br>
+<form method="get" action="{% url 'samplesAnalyzer:finalResults' %}">
+    <button type="submit">SEE ALL RESULTS</button>
+</form>
+<br>
+<form method="get" action="{% url 'samplesAnalyzer:index' %}">
+    <button type="submit">GO BACK TO INDEX</button>
+</form>
+
+{% endblock %}
